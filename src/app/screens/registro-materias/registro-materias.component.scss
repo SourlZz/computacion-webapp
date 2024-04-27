@@ -1,0 +1,134 @@
+.wrapper{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+mat-form-field {
+  width: 100%!important;
+  height: 48px!important;
+  text-align: left!important;
+}
+
+.section-registro {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.body-registro {
+  width: 50vw;
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding-top: 1.5rem;
+  gap: 1.5rem;
+}
+
+.title-materias {
+  font-size: 28px;
+  text-align: center;
+  font-family: Nexa-Bold;
+  letter-spacing: 2px;
+  color: #231F20;
+  opacity: 1;
+}
+
+.section-buttons {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 3rem;
+}
+
+.btn-primary {
+  width: 208px;
+  height: 48px;
+  background-color: #0092B8!important;
+  border-color: #0092B8!important;
+  border-radius: 8px!important;
+  opacity: 1;
+  text-align: center;
+  font-family: Nexa-Bold;
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+  opacity: 1;
+}
+
+.btn-primary:hover {
+  background-color: #017895!important;
+  border-color: #017895!important;
+}
+
+.btn-danger {
+  width: 208px;
+  height: 48px;
+  border-radius: 8px!important;
+  opacity: 1;
+  text-align: center;
+  font-family: Nexa-Bold;
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+  opacity: 1;
+}
+
+mat-form-field {
+  width: 100%!important;
+  height: 48px!important;
+  text-align: left!important;
+}
+.checkbox-container {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 10px; // Espacio entre checkbox y su etiqueta
+}
+
+.checkbox-label {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 5px; // Espacio entre checkbox y su etiqueta
+  font-size: 16px; // Tamaño de fuente de la etiqueta
+  color: #333; // Color del texto de la etiqueta
+}
+
+.checkbox-input {
+  display: none; // Ocultar el input checkbox
+}
+
+.checkbox-custom {
+  display: inline-block;
+  width: 20px; // Ancho del checkbox personalizado
+  height: 20px; // Altura del checkbox personalizado
+  background-color: #fff; // Color de fondo del checkbox personalizado
+  border: 2px solid #666; // Borde del checkbox personalizado
+  border-radius: 3px; // Radio de borde del checkbox personalizado
+  cursor: pointer; // Cambiar el cursor al pasar sobre el checkbox personalizado
+}
+
+.checkbox-custom.checked {
+  background-color: #009688; // Color de fondo cuando el checkbox está marcado
+}
+
+.checkbox-custom.checked::after {
+  content: '\2714'; // Icono de marca (✓) cuando el checkbox está marcado
+  font-size: 14px; // Tamaño del icono de marca
+  color: #fff; // Color del icono de marca
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); // Centrar el icono de marca
+  text-align: center;
+}

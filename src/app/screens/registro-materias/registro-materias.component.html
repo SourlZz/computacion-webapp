@@ -1,0 +1,78 @@
+<div class="wrapper">
+  <app-navbar></app-navbar>
+  <!-- Engloba todo el formulario con la cabecera -->
+  <div class="section-registro">
+    <div class="body-registro">
+      <div class="row mt-3 mb-3">
+        <div class="form-group col-12">
+          <label class="title-materias" for="tipo_materia">Registrar nueva materia</label>
+        </div>
+      </div>
+      <mat-form-field class="mat-input" appearance="outline">
+        <mat-label>NRC</mat-label>
+        <input matInput type="number" [(ngModel)]="materia.nrc" name="nrc" placeholder="Escribe el NRC">
+      </mat-form-field>
+      <div *ngIf="errors.nrc" class="invalid-feedback">{{ errors.nrc }}</div>
+
+      <mat-form-field class="mat-input" appearance="outline">
+        <mat-label>Nombre de la materia</mat-label>
+        <input matInput [(ngModel)]="materia.nombre" name="nombre" placeholder="Escribe el nombre de la materia">
+      </mat-form-field>
+      <div *ngIf="errors.nombre" class="invalid-feedback">{{ errors.nombre }}</div>
+
+      <mat-form-field class="mat-input" appearance="outline">
+        <mat-label>Sección</mat-label>
+        <input matInput [(ngModel)]="materia.seccion" name="seccion" placeholder="Escribe la sección">
+      </mat-form-field>
+      <div *ngIf="errors.seccion" class="invalid-feedback">{{ errors.seccion }}</div>
+
+      <div class="checkbox-group" *ngFor="let dia of dias; let i = index">
+        <mat-checkbox class="checkbox-item opc-sc" name="opsc" (change)="checkboxChange($event)" value="{{dia.nombre}}"
+          [checked]="revisarSeleccion(dia.nombre)">
+          <div class="d-checkbox-nombre">{{ dia.nombre }}</div>
+        </mat-checkbox>
+      </div>
+
+
+      <!-- se utiliza un matdiel con un DataTimepicker de angular material de hora incio y fin  -->
+      <mat-form-field class="mat-input" appearance="outline">
+        <mat-label>Hora de inicio</mat-label>
+        <input placeholder="Hora inicio" [ngxTimepicker]="picker" [(ngModel)]="materia.hora_inicio" name="hora_inicio"
+          matInput>
+        <ngx-material-timepicker #picker></ngx-material-timepicker>
+      </mat-form-field>
+      <div *ngIf="errors.hora_inicio" class="invalid-feedback">{{ errors.hora_inicio }}</div>
+
+      <mat-form-field class="mat-input" appearance="outline">
+        <mat-label>Hora de fin</mat-label>
+        <input placeholder="Hora fin" [ngxTimepicker]="picker2" [(ngModel)]="materia.hora_fin" name="hora_fin"
+          matInput>
+        <ngx-material-timepicker #picker2></ngx-material-timepicker>
+      </mat-form-field>
+      <div *ngIf="errors.hora_fin" class="invalid-feedback">{{ errors.hora_fin }}</div>
+
+
+      <mat-form-field class="mat-input" appearance="outline">
+        <mat-label>Salón</mat-label>
+        <input matInput [(ngModel)]="materia.salon" name="salon" placeholder="Escribe el salón">
+      </mat-form-field>
+      <div *ngIf="errors.salon" class="invalid-feedback">{{ errors.salon }}</div>
+
+      <mat-form-field class="mat-input" appearance="outline">
+        <mat-label>Programa Educativo</mat-label>
+        <mat-select [(ngModel)]="materia.programa" name="programa">
+          <mat-option value="ITI">ITI</mat-option>
+          <mat-option value="Ing Ciencias de la Computación">Ing Ciencias de la Computación</mat-option>
+          <mat-option value="Licenciatura en Ciencias de la Computación">Licenciatura en Ciencias de la
+            Computación</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div *ngIf="errors.programa" class="invalid-feedback">{{ errors.programa }}</div>
+
+      <div class="section-buttons">
+        <button class="btn btn-danger" (click)="regresar()">Cancelar</button>
+        <button class="btn btn-primary" type="submit" (click)="registrar()">Registrar</button>
+      </div>
+    </div>
+  </div>
+</div>
