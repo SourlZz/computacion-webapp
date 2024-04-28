@@ -82,11 +82,29 @@ export class MateriasService {
     return this.http.post<any>(`${environment.url_api}/materias/`, data, httpOptions);
   }
 
-  public obtenerListaMaterias(): Observable<any> {
-    return this.http.get<any>(`${environment.url_api}/materias/`, httpOptions);
+  public obtenerListaMaterias (): Observable <any>{
+    var token = this.facadeService.getSessionToken();
+    var headers = new HttpHeaders({ 'Content-Type': 'application/json' , 'Authorization': 'Bearer '+token});
+    return this.http.get<any>(`${environment.url_api}/lista-materias/`, {headers:headers});
   }
+ //Obtener un solo maestro dependiendo su ID
+ public getMateriaByID(idUser: Number){
+  return this.http.get<any>(`${environment.url_api}/materias/?id=${idUser}`,httpOptions);
+}
 
 
+//Servicio para actualizar un usuario
+public editarMateria (data: any): Observable <any>{
+  var token = this.facadeService.getSessionToken();
+  var headers = new HttpHeaders({ 'Content-Type': 'application/json' , 'Authorization': 'Bearer '+token});
+  return this.http.put<any>(`${environment.url_api}/materias-edit/`, data, {headers:headers});
+}
 
+//Servicio para eliminar un usuario
+public eliminarMateria (idUser: Number): Observable <any>{
+  var token = this.facadeService.getSessionToken();
+  var headers = new HttpHeaders({ 'Content-Type': 'application/json' , 'Authorization': 'Bearer '+token});
+  return this.http.delete<any>(`${environment.url_api}/materias-edit/?id=${idUser}`, {headers:headers});
+}
   // Agregar más métodos según sea necesario, como obtener la lista de materias, editar una materia, eliminar una materia, etc.
 }

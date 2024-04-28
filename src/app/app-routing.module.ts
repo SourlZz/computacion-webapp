@@ -7,7 +7,7 @@ import { AdminScreenComponent } from './screens/admin-screen/admin-screen.compon
 import { AlumnosScreenComponent } from './screens/alumnos-screen/alumnos-screen.component';
 import { MaestrosScreenComponent } from './screens/maestros-screen/maestros-screen.component';
 import { GraficasScreenComponent } from './screens/graficas-screen/graficas-screen.component';
-import { ListamateriasScreenComponent } from './screens/listamaterias-screen/listamaterias-screen.component';
+import { ListaMateriasScreenComponent } from './screens/listamaterias-screen/listamaterias-screen.component';
 import { RegistroMateriasComponent } from './screens/registro-materias/registro-materias.component';
 
 
@@ -16,12 +16,13 @@ const routes: Routes = [
   { path: 'registro-usuarios', component: RegistroScreenComponent, pathMatch: 'full' },
   { path: 'registro-usuarios/:rol/:id', component: RegistroScreenComponent, pathMatch: 'full' },
   { path: 'registro-materias', component: RegistroMateriasComponent, pathMatch: 'full' },
+  { path: 'registro-materias/:id', component: RegistroMateriasComponent, pathMatch: 'full'},
   { path: 'home', component: HomeScreenComponent, pathMatch: 'full' },
   { path: 'administrador', component: AdminScreenComponent, pathMatch: 'full' },
   { path: 'alumnos', component: AlumnosScreenComponent, pathMatch: 'full' },
   { path: 'maestros', component: MaestrosScreenComponent, pathMatch: 'full' },
   { path: 'graficas', component: GraficasScreenComponent, pathMatch: 'full'},
-  { path: 'listamaterias', component: ListamateriasScreenComponent, pathMatch: 'full'}
+  { path: 'listamaterias', component: ListaMateriasScreenComponent, pathMatch: 'full'}
 ];
 
 @NgModule({

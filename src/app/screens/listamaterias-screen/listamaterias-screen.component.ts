@@ -2,8 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { Router } from '@angular/router';
 import { EliminarUserModalComponent } from 'src/app/modals/eliminar-user-modal/eliminar-user-modal.component';
+import { Router } from '@angular/router';
 import { MateriasService } from 'src/app/services/materias.service';
 import { FacadeService } from 'src/app/services/facade.service';
 
@@ -12,47 +12,51 @@ import { FacadeService } from 'src/app/services/facade.service';
   templateUrl: './listamaterias-screen.component.html',
   styleUrls: ['./listamaterias-screen.component.scss']
 })
-export class  ListamateriasScreenComponent implements OnInit {
+export class ListaMateriasScreenComponent implements OnInit {
+
   public name_user: string = "";
   public rol: string = "";
   public token: string = "";
   public lista_materias: any[] = [];
 
-  //Para la tabla
-  displayedColumns: string[] = ['nrc', 'nombre', 'hora_inicio', 'hora_fin', 'salon', 'programa', 'editar', 'eliminar'];
+  // Para la tabla
+  displayedColumns: string[] = ['nrc', 'nombre', 'seccion', 'dias_json', 'hora_inicio', 'hora_fin', 'salon', 'programa', 'editar', 'eliminar'];
   dataSource = new MatTableDataSource<any>(this.lista_materias);
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(
     private materiasService: MateriasService,
-    private facadeService: FacadeService,
     private router: Router,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private facadeService:FacadeService
   ) { }
 
   ngOnInit(): void {
+    // Obtener el nombre del usuario y el rol
     this.name_user = this.facadeService.getUserCompleteName();
     this.rol = this.facadeService.getUserGroup();
-    //Validar que haya inicio de sesión
-    //Obtengo el token del login
-    this.token = this.facadeService.getSessionToken();
-    console.log("Token: ", this.token);
+
+    // Validar que haya inicio de sesión
+    // Obtener el token del login
+    this.token = "Token"; // Aquí debes obtener el token del usuario
 
     if (this.token == "") {
       this.router.navigate([""]);
     }
 
+    // Obtener materias
     this.obtenerMaterias();
-    //Para paginador
+
+    // Inicializar paginador
     this.initPaginator();
   }
 
-  //Para paginación
+  // Inicializar paginador
   public initPaginator() {
     setTimeout(() => {
       this.dataSource.paginator = this.paginator;
-      //Modificar etiquetas del paginador a español
+      // Modificar etiquetas del paginador a español
       this.paginator._intl.itemsPerPageLabel = 'Registros por página';
       this.paginator._intl.getRangeLabel = (page: number, pageSize: number, length: number) => {
         if (length === 0 || pageSize === 0) {
@@ -70,12 +74,11 @@ export class  ListamateriasScreenComponent implements OnInit {
     }, 500);
   }
 
-  //Obtener materias
+  // Obtener materias
   public obtenerMaterias() {
     this.materiasService.obtenerListaMaterias().subscribe(
       (response) => {
         this.lista_materias = response;
-        console.log("Lista materias: ", this.lista_materias);
         if (this.lista_materias.length > 0) {
           this.dataSource = new MatTableDataSource<any>(this.lista_materias);
         }
@@ -85,12 +88,12 @@ export class  ListamateriasScreenComponent implements OnInit {
     );
   }
 
-  //Función para editar
+  // Función para editar
   public goEditar(idMateria: number) {
-    this.router.navigate(["editar-materia", idMateria]);
+    this.router.navigate(["registro-materias", idMateria]);
   }
 
-  //Eliminar materia
+  // Eliminar materia
   public delete(idMateria: number) {
     const dialogRef = this.dialog.open(EliminarUserModalComponent, {
       data: { id: idMateria },
@@ -99,13 +102,23 @@ export class  ListamateriasScreenComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result.isDelete) {
-        console.log("Materia eliminada");
         // Recargar la página
         window.location.reload();
       } else {
         alert("No se pudo eliminar la materia");
-        console.log("Materia no eliminada");
       }
     });
   }
+}
+
+export interface DatosMateria {
+  id: number;
+  nrc: number;
+  nombre: string;
+  seccion: string;
+  dias_json: string;
+  hora_inicio: string;
+  hora_fin: string;
+  salon: string;
+  programa: string;
 }

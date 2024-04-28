@@ -22,14 +22,13 @@
 
       <mat-form-field class="mat-input" appearance="outline">
         <mat-label>Sección</mat-label>
-        <input matInput [(ngModel)]="materia.seccion" name="seccion" placeholder="Escribe la sección">
+        <input matInput type="number" [(ngModel)]="materia.seccion" name="seccion" placeholder="Escribe la sección">
       </mat-form-field>
       <div *ngIf="errors.seccion" class="invalid-feedback">{{ errors.seccion }}</div>
 
       <div class="checkbox-group" *ngFor="let dia of dias; let i = index">
-        <mat-checkbox class="checkbox-item opc-sc" name="opsc" (change)="checkboxChange($event)" value="{{dia.nombre}}"
-          [checked]="revisarSeleccion(dia.nombre)">
-          <div class="d-checkbox-nombre">{{ dia.nombre }}</div>
+        <mat-checkbox class="checkbox-item opc-sc" name="opsc" (change)="checkboxChange($event)" value="{{dia.nombre}}" [checked]="revisarSeleccion(dia.nombre)">
+            <div class="d-checkbox-nombre">{{dia.nombre}}</div>
         </mat-checkbox>
       </div>
 

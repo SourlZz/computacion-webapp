@@ -5,6 +5,7 @@
     </button>
     <div class="body-modal">
       <h1 class="title-modal">Eliminar {{rol}}</h1>
+      <ng-container *ngIf="tipo=='registro-usuarios'; else eliminaMaterias ">
       <span class="descripcion">Estás a punto de eliminar este {{rol}}. Una vez que lo elimines, no podrás recuperar sus
         datos.</span>
       <div class="buttons-modal">
@@ -15,5 +16,19 @@
           Eliminar
         </button>
       </div>
+      </ng-container>
+        <ng-template #eliminaMaterias>
+          <span class="descripcion">Estás a punto de eliminar esta materia. Una vez que la elimines, no podrás recuperar
+            sus datos.</span>
+            <div class="buttons-modal">
+              <button mat-button class="btn-regresar" (click)="cerrar_modal()">
+                Cancelar
+              </button>
+              <button mat-button class="btn-eliminar" (click)="eliminarMateria()">
+                Eliminar
+              </button>
+            </div>
+        </ng-template>
+
     </div>
   </div>
