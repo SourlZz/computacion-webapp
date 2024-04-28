@@ -29,12 +29,18 @@ export class RegistroMateriasComponent implements OnInit {
     private router: Router
   ) {}
 
+
   ngOnInit(): void {
     const idMateria = this.activatedRoute.snapshot.params['id'];
     if (idMateria) {
       this.materiasService.getMateriaByID(idMateria).subscribe(
         (response) => {
           this.materia = response;
+
+          // Convertir la cadena dias_json en un arreglo
+          this.materia.dias_json = this.materia.dias_json.split(',').map((dia: string) => dia.trim());
+
+          // Marcar los checkboxes según los días seleccionados
           this.dias.forEach(dia => {
             dia.checked = this.materia.dias_json.includes(dia.nombre);
           });
@@ -47,22 +53,30 @@ export class RegistroMateriasComponent implements OnInit {
     }
   }
 
+
+
+
   public checkboxChange(event: any) {
-    // Asegúrate de que this.materia.dias_json sea un array
+    const diaSeleccionado = event.source.value;
+
+    // Verificar si this.materia.dias_json es un arreglo
     if (!Array.isArray(this.materia.dias_json)) {
-      this.materia.dias_json = [];
+      this.materia.dias_json = []; // Inicializar como un arreglo vacío
     }
 
-    if (event && event.checked) {
-      this.materia.dias_json.push(event.source.value);
-    } else if (event) {
-      const index = this.materia.dias_json.indexOf(event.source.value);
-      if (index !== -1) {
-        this.materia.dias_json.splice(index, 1);
-      }
+    const index = this.materia.dias_json.indexOf(diaSeleccionado);
+
+    if (event.checked && index === -1) {
+      // Agregar el día seleccionado si no está en el arreglo
+      this.materia.dias_json.push(diaSeleccionado);
+    } else if (!event.checked && index !== -1) {
+      // Eliminar el día seleccionado si está en el arreglo
+      this.materia.dias_json.splice(index, 1);
     }
     console.log("Array días: ", this.materia.dias_json);
   }
+
+
 
   revisarSeleccion(nombre: string): boolean {
     return this.materia.dias_json ? this.materia.dias_json.includes(nombre) : false;
