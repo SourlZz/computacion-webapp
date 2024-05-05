@@ -34,7 +34,7 @@ import { EliminarUserModalComponent } from './modals/eliminar-user-modal/elimina
 import { GraficasScreenComponent } from './screens/graficas-screen/graficas-screen.component';
 import { NgChartsModule } from 'ng2-charts';
 import { ListaMateriasScreenComponent } from './screens/listamaterias-screen/listamaterias-screen.component';
-import { RegistroMateriasComponent } from './screens/registro-materias/registro-materias.component'
+import { RegistroMateriasComponent } from './partials/registro-materias/registro-materias.component'
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 
 @NgModule({

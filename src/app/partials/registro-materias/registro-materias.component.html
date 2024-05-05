@@ -60,8 +60,8 @@
       <mat-form-field class="mat-input" appearance="outline">
         <mat-label>Programa Educativo</mat-label>
         <mat-select [(ngModel)]="materia.programa" name="programa">
-          <mat-option value="ITI">ITI</mat-option>
-          <mat-option value="Ing Ciencias de la Computación">Ing Ciencias de la Computación</mat-option>
+          <mat-option value="ITI">Ingenieria en Tecnologias de la Informacion</mat-option>
+          <mat-option value="Ing Ciencias de la Computación">Ingenieria Ciencias de la Computación</mat-option>
           <mat-option value="Licenciatura en Ciencias de la Computación">Licenciatura en Ciencias de la
             Computación</mat-option>
         </mat-select>
@@ -70,7 +70,8 @@
 
       <div class="section-buttons">
         <button class="btn btn-danger" (click)="regresar()">Cancelar</button>
-        <button class="btn btn-primary" type="submit" (click)="registrar()">Registrar</button>
+        <button *ngIf="!editar" class="btn btn-primary" type="submit" (click)="registrar()">Registrar</button>
+        <button *ngIf="editar" class="btn btn-primary" type="submit" (click)="registrar()">Actualizar</button>
       </div>
     </div>
   </div>

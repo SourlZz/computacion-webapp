@@ -8,7 +8,7 @@ import { AlumnosScreenComponent } from './screens/alumnos-screen/alumnos-screen.
 import { MaestrosScreenComponent } from './screens/maestros-screen/maestros-screen.component';
 import { GraficasScreenComponent } from './screens/graficas-screen/graficas-screen.component';
 import { ListaMateriasScreenComponent } from './screens/listamaterias-screen/listamaterias-screen.component';
-import { RegistroMateriasComponent } from './screens/registro-materias/registro-materias.component';
+import { RegistroMateriasComponent } from './partials/registro-materias/registro-materias.component';
 
 
 const routes: Routes = [

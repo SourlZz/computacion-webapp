@@ -31,7 +31,7 @@
                 <li><a class="dropdown-item" (click)="goRegistro()" *ngIf="rol!='maestro' && rol!='alumno'">Maestros</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <!-- si registra materias lo manda a screen materias con el branch #registraMaterias-->
-                <li><a class="dropdown-item" (click)="goRegistroMaterias()">Materias</a></li>
+                <li><a class="dropdown-item" (click)="goRegistroMaterias()" *ngIf="rol!='maestro' && rol!='alumno'" >Materias</a></li>
               </ul>
             </li>
           </ng-container>

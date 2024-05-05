@@ -79,12 +79,6 @@ export class NavbarComponent implements OnInit{
       $("#maestro").removeClass("active");
       $("#principal").removeClass("active");
       $("#graficas").addClass("active");
-    }else if(link == "listamaterias"){
-      $("#alumno").removeClass("active");
-      $("#maestro").removeClass("active");
-      $("#principal").removeClass("active");
-      $("#graficas").removeClass("active");
-      $("#listamaterias").addClass("active");
     }
   }
 

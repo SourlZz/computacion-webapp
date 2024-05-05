@@ -18,6 +18,7 @@ export class ListaMateriasScreenComponent implements OnInit {
   public rol: string = "";
   public token: string = "";
   public lista_materias: any[] = [];
+  public rolUsuario: string = "";
 
   // Para la tabla
   displayedColumns: string[] = ['nrc', 'nombre', 'seccion', 'dias_json', 'hora_inicio', 'hora_fin', 'salon', 'programa', 'editar', 'eliminar'];

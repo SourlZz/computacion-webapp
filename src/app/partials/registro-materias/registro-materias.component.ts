@@ -13,6 +13,7 @@ export class RegistroMateriasComponent implements OnInit {
   public errors: any = {};
   horaInicial: string = '';
   horaFinal: string = '';
+  public editar:boolean = false;
   dias: any[] = [
     { value: 1, nombre: 'Lunes' },
     { value: 2, nombre: 'Martes' },
@@ -36,7 +37,7 @@ export class RegistroMateriasComponent implements OnInit {
       this.materiasService.getMateriaByID(idMateria).subscribe(
         (response) => {
           this.materia = response;
-
+          this.editar = true;
           // Convertir la cadena dias_json en un arreglo
           this.materia.dias_json = this.materia.dias_json.split(',').map((dia: string) => dia.trim());
 
