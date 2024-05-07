@@ -1,0 +1,19 @@
+<div class="wrapper">
+  <div class="icon-close">
+      <button class="btn" (click)="cerrar_modal()">
+          <i class="bi bi-x-lg"></i>
+      </button>
+  </div>
+  <div class="body-modal">
+      <h1 class="tittle-modal">Editar materia</h1>
+      <span class="descripcion">Estas a punto de editar esta materia. Una vez que la modifiques no podras deshacer esta accion</span>
+      <div class="buttons-modal">
+          <button mat-button class="btn-regresar" (click)="cerrar_modal()">
+              Cancelar
+          </button>
+          <button mat-button class="btn-editar" (click)="modificarMat()">
+              Editar
+          </button>
+      </div>
+  </div>
+</div>

@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Location } from '@angular/common';
 import { MateriasService } from '../../services/materias.service';
 import { ActivatedRoute, Router } from '@angular/router';
-
+import { EditarModalComponent } from 'src/app/modals/editar-modal/editar-modal.component';
+import { MatDialog } from '@angular/material/dialog';
+declare var $: any;
 @Component({
   selector: 'app-registro-materias',
   templateUrl: './registro-materias.component.html',
@@ -27,7 +29,8 @@ export class RegistroMateriasComponent implements OnInit {
     private location: Location,
     private materiasService: MateriasService,
     private activatedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private dialog: MatDialog
   ) {}
 
 
@@ -121,4 +124,36 @@ export class RegistroMateriasComponent implements OnInit {
       );
     }
   }
+  public actualizar() {
+    //Agreagar el modal para eliminar materia
+    const dialogRef = this.dialog.open(EditarModalComponent, {
+      data: { id: this.materia.idMateria }, //Se pasan los valores a traves del componente
+      height: '288px',
+      width: '328px',
+    });
+    //DESPUES DE CERRAR EL MODAL
+    dialogRef.afterClosed().subscribe(result => {
+      //Validación
+      this.errors = [];
+      this.errors = this.materiasService.validarMateria(this.materia);
+      if (!$.isEmptyObject(this.errors)) {
+        console.log("No paso la validacion");
+        return false;
+      }
+      console.log("Pasó la validación");
+
+      this.materiasService.editarMateria(this.materia).subscribe(
+        (response) => {
+          //alert("Materia editada correctamente");
+          console.log("Materia editada: ", response);
+          //Si se editó, entonces mandar al home
+          this.router.navigate(["home"]);
+        }, (error) => {
+          console.error("Error al editar la materia: ", error);
+          //alert("No se pudo editar la materia");
+        }
+      );
+    });
+  }
 }
+
