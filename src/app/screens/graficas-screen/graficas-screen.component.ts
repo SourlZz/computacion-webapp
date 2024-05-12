@@ -35,6 +35,7 @@ export class GraficasScreenComponent implements OnInit{
             datasets: [
               {
                 data: this.data,
+                label: 'Registro de usuarios',
                 backgroundColor: '#F88406'
               }
             ]
@@ -46,6 +47,7 @@ export class GraficasScreenComponent implements OnInit{
             datasets: [
               {
                 data: this.data,
+                label: 'Registro de usuarios',
                 backgroundColor: [
                   '#F88406',
                   '#FCFF44',

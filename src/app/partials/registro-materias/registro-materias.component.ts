@@ -11,6 +11,7 @@ declare var $: any;
   styleUrls: ['./registro-materias.component.scss']
 })
 export class RegistroMateriasComponent implements OnInit {
+  public tipo:string = "registra-materias";
   public materia: any = {};
   public errors: any = {};
   horaInicial: string = '';
@@ -41,9 +42,9 @@ export class RegistroMateriasComponent implements OnInit {
         (response) => {
           this.materia = response;
           this.editar = true;
-          // Convertir la cadena dias_json en un arreglo
-          this.materia.dias_json = this.materia.dias_json.split(',').map((dia: string) => dia.trim());
-
+          if (typeof this.materia.dias_json === 'string') {
+            this.materia.dias_json = this.materia.dias_json.split(',').map((dia: string) => dia.trim());
+          }
           // Marcar los checkboxes según los días seleccionados
           this.dias.forEach(dia => {
             dia.checked = this.materia.dias_json.includes(dia.nombre);
